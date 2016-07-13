@@ -39,7 +39,16 @@ public class UserRepositoryImpl implements UserRepository {
         User user = (User)query.uniqueResult();
         finishSession();
         return user;
+    }
 
+    public User getByEmail(String email){
+        initializeSession();
+        String hql = "from User where email =:email";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("email", email);
+        User user = (User)query.uniqueResult();
+        finishSession();
+        return user;
     }
 
     private void initializeSession(){

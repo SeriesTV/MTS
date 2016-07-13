@@ -18,7 +18,7 @@ public class App {
         userService.addUser(user);
         user.setUsername("Krzysztof");
         userService.updateUser(user);
-        User user2 = userService.getByUsername("Krzysztof");
+        User user2 = userService.getByUsername("Krzysztoff");
         HibernateSessionFactoryManager.shutdown();
 
     }
