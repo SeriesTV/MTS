@@ -1,4 +1,4 @@
-package mtc.repository;
+package mtc.service;
 
 import mtc.entity.User;
 import org.hibernate.SessionFactory;

@@ -1,10 +1,9 @@
 package mtc;
 
 import mtc.entity.User;
-import mtc.service.HibernateService;
-import mtc.service.impl.HibernateServiceImpl;
-import org.hibernate.*;
-import mtc.repository.HibernateSessionFactoryManager;
+import mtc.service.HibernateSessionFactoryManager;
+import mtc.service.UserService;
+import mtc.service.impl.UserServiceImpl;
 
 /**
  * Created by Michal Czarnecki on 12.07.2016.
@@ -12,12 +11,15 @@ import mtc.repository.HibernateSessionFactoryManager;
 public class App {
     public static void main(String ... args){
 
-        HibernateService hibernateService = new HibernateServiceImpl();
-        User user = new User();
-        user.setId(1);
-        hibernateService.saveEntity(user);
-        User user2 = new User();
-        hibernateService.saveEntity(user2);
-       // System.out.print("Hello world");
+        User user = new User(1, "Mike", "mich@cos.com", "aaaaaa");
+        UserService userService = new UserServiceImpl();
+        userService.addUser(user);
+        userService.addUser(user);
+        userService.addUser(user);
+        user.setUsername("Krzysztof");
+        userService.updateUser(user);
+        User user2 = userService.getByUsername("Krzysztof");
+        HibernateSessionFactoryManager.shutdown();
+
     }
 }
